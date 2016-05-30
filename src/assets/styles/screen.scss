@@ -1,0 +1,10 @@
+@import 'partials/reset';
+@import 'partials/variables';
+@import 'partials/global';
+
+@import 'views/header';
+@import 'views/sidebar';
+@import 'views/content';
+@import 'views/footer';
+
+@import 'bootstrap/bootstrap';

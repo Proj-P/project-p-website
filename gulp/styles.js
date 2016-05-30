@@ -27,7 +27,6 @@ var buildStyles = function() {
 
   var injectFiles = gulp.src([
     path.join(conf.paths.src, '/app/**/*.scss'),
-    path.join(conf.paths.src, '/assets/styles/material-design-lite.scss'),
     path.join('!' + conf.paths.src, '/app/index.scss')
   ], { read: false });
 
