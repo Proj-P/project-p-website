@@ -15,6 +15,7 @@ gulp.task('watch', ['scripts:watch', 'inject'], function () {
   gulp.watch([path.join(conf.paths.src, '/*.html'), 'bower.json'], ['inject-reload']);
 
   gulp.watch([
+    path.join(conf.paths.src, '/assets/styles/**/*.scss'),
     path.join(conf.paths.src, '/app/**/*.css'),
     path.join(conf.paths.src, '/app/**/*.scss')
   ], function(event) {

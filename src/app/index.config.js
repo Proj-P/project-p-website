@@ -1,12 +1,14 @@
-export function config ($logProvider, toastrConfig) {
+export function config ($locationProvider, toastrConfig) {
   'ngInject';
-  // Enable log
-  $logProvider.debugEnabled(true);
 
-  // Set options third-party lib
-  toastrConfig.allowHtml = true;
-  toastrConfig.timeOut = 3000;
-  toastrConfig.positionClass = 'toast-top-right';
-  toastrConfig.preventDuplicates = true;
-  toastrConfig.progressBar = true;
+  // This is to remove the trailing # in the URL.
+  $locationProvider.html5Mode(true);
+
+  angular.extend(toastrConfig, {
+    maxOpened: 4,
+    positionClass: 'toast-bottom-right',
+    progressBar: true,
+    closeButton: true
+  });
+
 }

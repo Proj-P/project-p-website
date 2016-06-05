@@ -1,15 +1,33 @@
 export class MainController {
-  constructor (toastr) {
+  constructor (toastr, DataService, $log, webSocket) {
     'ngInject';
 
-    this.awesomeThings = [];
-    this.classAnimation = '';
-    this.creationDate = 1464639997554;
-    this.toastr = toastr;
+    this.meme = 'meme';
+
+    $log.log('hey');
+    this.MyData = webSocket;
+    $log.log(this.MyData)
+
+
+    this.status = 'unknown';
+
+    // this.getStatus = () => {
+    //   let call_data = {
+    //     suffix: '/locations/2',
+    //     headers: {
+    //       'content-type': 'application/json'
+    //     }
+    //   };
+    //
+    //   DataService.getData(call_data).then((data) => {
+    //     $this.status = data.data.occupied;
+    //   }).catch((response) => {
+    //     $log.log(response);
+    //   });
+    // }
+    //
+    // this.getStatus();
+
   }
 
-  showToastr() {
-    this.toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-    this.classAnimation = '';
-  }
 }
