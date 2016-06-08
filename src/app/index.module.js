@@ -4,7 +4,7 @@ import { routerConfig }     from './index.route';
 import { runBlock }         from './index.run';
 import { MainController }   from './main/main.controller';
 
-import { webSocket }    from '../app/factories/open-web-socket.factory';
+import { webSocketFactory }    from '../app/factories/open-web-socket.factory';
 
 import { DataService }      from  '../app/services/data.service';
 
@@ -18,10 +18,11 @@ angular.module('projectpAngular', [
   'ngResource',
   'ui.router',
   'toastr',
-  'ngWebSocket'])
+  'btford.socket-io'])
   // Constants, app wide values
   .value('envConfig', {
-    apiUrl:   'http://192.168.2.26:8080/',
+    apiUrl:   ' http://api.project-p.xyz',
+    webSocketUrl:   'ws://api.project-p.xyz',
     baseUrl:  '/',
     debug:    true
   })
@@ -31,7 +32,7 @@ angular.module('projectpAngular', [
   .config(routerConfig)
   .run(runBlock)
 
-  .factory('webSocket',                      webSocket)
+  .factory('webSocketFactory',            webSocketFactory)
 
   .controller('MainController',           MainController)
 

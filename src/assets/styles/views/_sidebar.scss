@@ -1,119 +1,49 @@
-.wrapper {
-  padding-left: 0;
+
+.sidebar-wrapper {
+  height: 100%;
+  min-height: 400px;
+  width: 300px;
+  background: $darker-gray;
   transition: all .5s ease;
-
-  .sidebar-wrapper {
-    width: 0;
-    z-index: 1000;
-    position: fixed;
-    left: 250px;
-    height: 100%;
-    margin-left: -250px;
-    overflow-y: auto;
-    background: transparentize($black, .9);
-    transition: all .5s ease;
-  }
-
-  .logo {
-    display: inline-block;
-    position: relative;
-    width: 80px;
-    vertical-align: middle;
-    overflow: hidden;
-
-    img {
-      width: 100%;
-    }
-  }
-
-  .page-content-wrapper {
-    width: 100%;
-    position: absolute;
-    padding: 15px;
-  }
-
-  .toggled {
-    padding-left: 250px;
-
-    .page-content-wrapper {
-      position: absolute;
-      margin-right: -250px;
-    }
-
-    .sidebar-wrapper {
-      width: 0;
-    }
-  }
+  float: left;
+  padding: 20px 0;
 
   .sidebar-nav {
-    position: absolute;
-    top: 0;
-    width: 250px;
     margin: 0;
     padding: 0;
     list-style: none;
 
     li {
-      line-height: 40px;
-
-      a {
-        display: block;
-        text-decoration: none;
-        color: $light-gray;
-
-        &:active,
-        &:focus {
-          text-decoration: none;
-        }
-
-        &:hover {
-          text-decoration: none;
-          color: $white;
-        }
-      }
+      display: block;
     }
-  }
-
-  > .sidebar-brand {
-    height: 65px;
-    font-size: 18px;
-    line-height: 60px;
 
     a {
-      color: $light-gray;
+      color: $white;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      display: block;
+      padding: 8px 30px;
 
-      &:hover {
-        color: $white;
-        background: none;
-      }
-    }
-  }
-}
-
-@media(min-width:768px) {
-  .wrapper {
-    padding-left: 250px;
-
-    &.toggled {
-      padding-left: 0;
-
-      .sidebar-wrapper {
-        width: 0;
-      }
-
-      .page-content-wrapper {
-        position: relative;
-        margin-right: 0;
+      &:hover,
+      &:active,
+      &:focus {
+        color: $primary-color;
+        text-decoration: none;
+        background: lighten($darker-gray, 5%);
       }
     }
 
-    .sidebar-wrapper {
-      width: 250px;
-    }
+    .sidebar-brand {
+      padding: 0 0 20px 30px;
 
-    .page-content-wrapper {
-      padding: 20px;
-      position: relative;
+      .logo {
+        text-transform: uppercase;
+        color: transparentize($primary-color, .2);
+        letter-spacing: 2px;
+        font-size: .7em;
+      }
     }
   }
 }

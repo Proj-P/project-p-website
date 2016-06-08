@@ -1,33 +1,45 @@
 export class MainController {
-  constructor (toastr, DataService, $log, webSocket) {
+  constructor (toastr, DataService, $log, webSocketFactory, $scope) {
     'ngInject';
 
-    this.meme = 'meme';
+    var $this = this;
 
-    $log.log('hey');
-    this.MyData = webSocket;
-    $log.log(this.MyData)
+    $scope.meme = 'meme';
 
+    webSocketFactory.on('connect', function() {
+      console.log('yo im connected');
+    });
 
-    this.status = 'unknown';
+    webSocketFactory.on('location', function(data) {
+        console.log(data);
+        this.determineStatus(data);
+    });
 
-    // this.getStatus = () => {
-    //   let call_data = {
-    //     suffix: '/locations/2',
-    //     headers: {
-    //       'content-type': 'application/json'
-    //     }
-    //   };
-    //
-    //   DataService.getData(call_data).then((data) => {
-    //     $this.status = data.data.occupied;
-    //   }).catch((response) => {
-    //     $log.log(response);
-    //   });
-    // }
-    //
-    // this.getStatus();
+    this.determineStatus = (data) => {
+      if (data) {
+        $scope.status = 'bezet';
+      } else {
+        $scope.status = 'vrij';
+      }
+    };
+
+    this.getStatus = () => {
+      let call_data = {
+        suffix: '/locations/1',
+        headers: {
+          'content-type': 'application/json'
+        }
+      };
+
+      DataService.getData(call_data).then((data) => {
+        this.determineStatus(data);
+
+      }).catch((response) => {
+        $log.log(response);
+      });
+    };
+
+    this.getStatus();
 
   }
-
 }
