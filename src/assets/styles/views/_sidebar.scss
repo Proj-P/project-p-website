@@ -12,7 +12,7 @@
     color: $white;
 
     p {
-      color:lighten($blue, 30%);
+      color: lighten($blue, 30%);
       font-size: 1.6em;
       display: inline-block;
       line-height: 0;
@@ -44,8 +44,6 @@
 
     a {
       color: $white;
-      font-weight: bold;
-      text-transform: uppercase;
       letter-spacing: 1px;
       cursor: pointer;
       display: block;
@@ -55,7 +53,7 @@
       &:hover,
       &:active,
       &:focus {
-        color: $primary-color;
+        color: lighten($primary-color, 15%);
         text-decoration: none;
         background: lighten($darker-gray, 4%);
         transition: ease-in-out .12s;
