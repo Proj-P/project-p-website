@@ -1,15 +1,40 @@
 
 .sidebar-wrapper {
-  height: 100%;
-  min-height: 400px;
-  width: 300px;
+  min-height: 460px;
+  width: 30%;
   background: $darker-gray;
   transition: all .5s ease;
   float: left;
   padding: 20px 0;
 
+  .select-location {
+    margin-left: 30px;
+    color: $white;
+
+    p {
+      color:lighten($blue, 30%);
+      font-size: 1.6em;
+      display: inline-block;
+      line-height: 0;
+    }
+
+    .material-icons {
+      font-size: 1.2em;
+      display: inline-block;
+      padding: 0 12px;
+      color: lighten($dark-gray, 15%);
+    }
+
+    span {
+      line-height: 0;
+      clear: both;
+      display: block;
+      color: lighten($dark-gray, 15%);
+    }
+  }
+
   .sidebar-nav {
-    margin: 0;
+    margin: 80px 0 0;
     padding: 0;
     list-style: none;
 
@@ -24,26 +49,33 @@
       letter-spacing: 1px;
       cursor: pointer;
       display: block;
-      padding: 8px 30px;
+      padding: 12px 30px;
+      transition: ease-in-out .12s;
 
       &:hover,
       &:active,
       &:focus {
         color: $primary-color;
         text-decoration: none;
-        background: lighten($darker-gray, 5%);
+        background: lighten($darker-gray, 4%);
+        transition: ease-in-out .12s;
+      }
+
+      &.active {
+        // border-left: 4px solid $primary-color;
+        background: lighten($darker-gray, 4%);
       }
     }
+  }
 
-    .sidebar-brand {
-      padding: 0 0 20px 30px;
+  .sidebar-brand {
+    padding: 0 0 20px 30px;
 
-      .logo {
-        text-transform: uppercase;
-        color: transparentize($primary-color, .2);
-        letter-spacing: 2px;
-        font-size: .7em;
-      }
+    .logo {
+      text-transform: uppercase;
+      color: transparentize($primary-color, .2);
+      letter-spacing: 2px;
+      font-size: .7em;
     }
   }
 }

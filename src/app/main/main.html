@@ -2,14 +2,18 @@
 <div class="wrapper">
 
   <div class="sidebar-wrapper">
+    <div class="sidebar-brand">
+      <span class="logo">
+        Project P
+      </span>
+    </div>
+    <div class="select-location">
+      <p>Toilet beneden</p><i class="material-icons">keyboard_arrow_down</i>
+      <span>{{status}}</span>
+    </div>
     <ul class="sidebar-nav">
-      <li class="sidebar-brand">
-        <span class="logo">
-          Project P
-        </span>
-      </li>
       <li>
-        <a ui-sref="/">Dashboard</a>
+        <a class="active" ui-sref="/">Dashboard</a>
       </li>
       <li>
         <a ui-sref="/">settings</a>
@@ -23,7 +27,6 @@
       <div class="row">
         <div class="col-lg-12">
 
-              <h1>Status:</h1>
               <code>{{status}}</code>
 
         </div>
