@@ -8,8 +8,9 @@
       </span>
     </div>
     <div class="select-location">
-      <p>Toilet beneden</p><i class="material-icons">keyboard_arrow_down</i>
-      <span>{{status}}</span>
+      <p>{{locationName}}</p><i class="material-icons">keyboard_arrow_down</i>
+      <span ng-hide="status"><i class="material-icons">done</i> {{statusMsg}}</span>
+      <span ng-show="status"><i class="material-icons">close</i> {{statusMsg}}</span>
     </div>
     <ul class="sidebar-nav">
       <li>
@@ -29,7 +30,28 @@
       <div class="row">
         <div class="col-lg-12">
 
-              <code>{{status}}</code>
+          <div class="stat-block-container">
+
+              <div class="stat-block current-status">
+                <span>Current status</span>
+                <i ng-hide="main.status" class="material-icons big">done</i>
+                <i ng-show="main.status" class="material-icons big">close</i>
+                <h4>{{statusMsg}}</h4>
+              </div>
+
+              <div class="stat-block average-toilet-time">
+                <h4 class="big">{{averageTime}} min.</h4>
+                <span>Average time</span>
+              </div>
+
+            </div>
+
+            <div class="graph">
+              <canvas id="line" class="chart chart-line" chart-data="data"
+                chart-labels="labels" chart-legend="true" chart-series="series"
+                chart-click="onClick" >
+              </canvas>
+            </div>
 
         </div>
       </div>

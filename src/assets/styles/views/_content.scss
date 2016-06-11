@@ -8,4 +8,39 @@
   .page-content-inner-wrapper {
     padding: 30px;
   }
+
+  .stat-block-container {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    min-height: 80px;
+
+    .stat-block {
+      min-height: 100px;
+      text-align: center;
+      flex-grow: 1;
+      margin: 20px;
+
+      h4 {
+        color: $primary-color;
+        font-size: 1em;
+        line-height: 0;
+        margin-top: 10px;
+        text-align: center;
+      }
+
+      .big {
+        margin-top: 20px;
+        color: $primary-color;
+        font-size: 3em;
+      }
+
+      span {
+        text-transform: uppercase;
+        font-size: .75em;
+        color: lighten($dark-gray, 40%);
+        display: block;
+      }
+    }
+  }
 }

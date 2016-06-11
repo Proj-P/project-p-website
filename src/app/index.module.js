@@ -18,6 +18,7 @@ angular.module('projectpAngular', [
   'ngResource',
   'ui.router',
   'toastr',
+  'chart.js',
   'btford.socket-io'])
   // Constants, app wide values
   .value('envConfig', {

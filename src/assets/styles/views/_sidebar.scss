@@ -29,7 +29,12 @@
       line-height: 0;
       clear: both;
       display: block;
-      color: lighten($dark-gray, 15%);
+      color: lighten($dark-gray, 30%);
+
+      .material-icons {
+        font-size: 1em;
+        padding: 10px 0;
+      }
     }
   }
 
