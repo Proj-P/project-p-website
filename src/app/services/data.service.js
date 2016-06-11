@@ -49,8 +49,9 @@ export class DataService {
       };
 
       return $http.put(default_config.url, data, {
-        method:     default_config.method,
-        headers:    default_config.headers
+        headers:    default_config.headers,
+        method:     default_config.method
+
       })
       .then( (response) => {
         return response.data;
