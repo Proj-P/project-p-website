@@ -1,8 +1,10 @@
-export function webSocketFactory(socketFactory, $log) {
+export function webSocketFactory(socketFactory) {
   'ngInject';
 
+  var myIoSocket = io.connect('ws://api.project-p.xyz:80');
   // Open a WebSocket connection
-  return socketFactory({
-    ioSocket: io.connect('ws://api.project-p.xyz:80')
+  var mySocket = socketFactory({
+    ioSocket: myIoSocket
   });
+  return mySocket;
 }

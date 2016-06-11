@@ -5,16 +5,18 @@ body {
   background-attachment: fixed;
   background-position: center;
   font-family: $primary-font;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 
 .wrapper {
-  min-height: 460px;
+  min-height: 510px;
   background: $white;
   width: 1024px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  box-shadow: 2px 2px 7px $box-shadow;
 }
 
 h1,
@@ -25,5 +27,7 @@ h5,
 h6 {
   text-transform: uppercase;
   font-weight: bold;
-  line-height: 1;
+  line-height: 1.428571429;
+  margin: 0;
+  padding: 0;
 }

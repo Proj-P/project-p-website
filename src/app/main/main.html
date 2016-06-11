@@ -9,7 +9,7 @@
     </div>
     <div class="select-location">
       <p>{{locationName}}</p><i class="material-icons">keyboard_arrow_down</i>
-      <span ng-hide="status"><i class="material-icons">done</i> {{statusMsg}}</span>
+      <span ng-hide="status" class="free"><i class="material-icons free">done</i> {{statusMsg}}</span>
       <span ng-show="status"><i class="material-icons">close</i> {{statusMsg}}</span>
     </div>
     <ul class="sidebar-nav">
@@ -26,25 +26,22 @@
   </div>
 
   <div class="page-content-wrapper">
-    <div class="page-content-inner-wrapper">
+    <div class="page-content-inner-wrapper nudge-up">
       <div class="row">
         <div class="col-lg-12">
 
           <div class="stat-block-container">
 
-              <div class="stat-block current-status">
+              <div class="stat-block">
+                <i ng-hide="status" class="material-icons big">done</i>
+                <i ng-show="status" class="material-icons big">close</i>
                 <span>Current status</span>
-                <i ng-hide="main.status" class="material-icons big">done</i>
-                <i ng-show="main.status" class="material-icons big">close</i>
-                <h4>{{statusMsg}}</h4>
               </div>
 
-              <div class="stat-block average-toilet-time">
+              <div class="stat-block">
                 <h4 class="big">{{averageTime}} min.</h4>
                 <span>Average time</span>
               </div>
-
-              <code>{{dates}}</code>
 
             </div>
 

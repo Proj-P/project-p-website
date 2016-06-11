@@ -1,0 +1,15 @@
+
+.nudge-up {
+  animation-duration: 1.2s;
+  animation-name: nudge-up;
+}
+
+@keyframes nudge-up {
+  from {
+    transform: translateY(50px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}

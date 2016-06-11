@@ -1,17 +1,17 @@
-export function config ($locationProvider, toastrConfig, $httpProvider) {
+export function config ($locationProvider, toastrConfig, $httpProvider, ChartJsProvider) {
   'ngInject';
 
   // This is to remove the trailing # in the URL.
   $locationProvider.html5Mode(true);
 
-  $httpProvider.defaults.useXDomain = true;
-  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    ChartJsProvider.setOptions({ colours : [ '#ff7878', '#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'] });
+
 
   angular.extend(toastrConfig, {
     maxOpened: 4,
     positionClass: 'toast-bottom-right',
-    progressBar: true,
-    closeButton: true
+    progressBar: false,
+    closeButton: false
   });
 
 }
