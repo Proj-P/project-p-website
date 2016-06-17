@@ -17,6 +17,7 @@ export class MainController {
       this.determineStatus(data, type);
       let average = Math.round((data.data.average_duration / 60));
       $scope.averageTime = average;
+      $scope.locationName = data.data.name;
     });
 
     webSocketFactory.on('visit', (data) => {
