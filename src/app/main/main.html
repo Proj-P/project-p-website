@@ -1,4 +1,4 @@
-
+<div class="bg" ng-class="status ? 'red' : ''"></div>
 <div class="wrapper">
 
   <div class="sidebar-wrapper">
@@ -9,8 +9,6 @@
     </div>
     <div class="select-location">
       <p>{{locationName}}</p><i class="material-icons">keyboard_arrow_down</i>
-      <span ng-hide="status" class="free"><i class="material-icons free">done</i> {{statusMsg}}</span>
-      <span ng-show="status"><i class="material-icons">close</i> {{statusMsg}}</span>
     </div>
     <ul class="sidebar-nav">
       <li>

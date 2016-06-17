@@ -20,7 +20,7 @@ export class MainController {
     });
 
     webSocketFactory.on('visit', (data) => {
-      $log.log(data);
+      this.fillGraph(data);
     });
 
     // check the toilet status
@@ -47,7 +47,7 @@ export class MainController {
     // get status from API
     this.getStatus = () => {
       let call_data = {
-        suffix: '/locations/1',
+        suffix: '/locations/2',
         headers: {
           'content-type': 'application/json'
         }
@@ -85,7 +85,7 @@ export class MainController {
 
     this.getGraphData = () => {
       let call_data = {
-        suffix: '/visits/recent',
+        suffix: '/visits',
         headers: {
           'content-type': 'application/json'
         }
@@ -103,7 +103,7 @@ export class MainController {
     };
 
     $scope.onClick = function (points, evt) {
-      console.log(points, evt);
+      $log.log(points, evt);
     };
 
     this.getGraphData();

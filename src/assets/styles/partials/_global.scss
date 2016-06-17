@@ -1,11 +1,21 @@
 body {
-  background: url('/assets/images/bg.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
   font-family: $primary-font;
   -webkit-font-smoothing: subpixel-antialiased;
+  background: url('/assets/images/bg.jpg');
+}
+
+.bg {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  transition: ease-in-out 2s;
+
+  &.red {
+    background: $red-overlay;
+    transition: ease-in-out 2s;
+  }
 }
 
 .wrapper {
