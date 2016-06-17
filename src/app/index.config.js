@@ -11,7 +11,9 @@ export function config ($locationProvider, toastrConfig, $httpProvider, ChartJsP
     maxOpened: 4,
     positionClass: 'toast-bottom-right',
     progressBar: false,
-    closeButton: false
+    closeButton: false,
+    autoDismiss: false,
+    timeOut: 5000
   });
 
 }

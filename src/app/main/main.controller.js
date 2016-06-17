@@ -28,21 +28,37 @@ export class MainController {
       if (type == 'api') {
         if (data.data.occupied) {
           this.status = true;
-          $scope.statusMsg = 'Occupied';
+          this.toggleStatusMessages();
+
         } else {
           this.status = false;
-          $scope.statusMsg = 'Free';
+          this.toggleStatusMessages();
         }
-      } else if (type == 'websocket') {
+      }
+      if (type == 'websocket') {
         if (data.location.occupied) {
           this.status = true;
-          $scope.statusMsg = 'Occupied';
+          this.toggleStatusMessages();
         } else {
           $scope.status = false;
-          $scope.statusMsg = 'Free';
+          this.toggleStatusMessages();
         }
       }
     };
+
+    this.toggleStatusMessages = () => {
+      if (this.status) {
+        $scope.statusMsg = 'Occupied';
+        toastr.error('Is now occupied!', $scope.locationName, {
+          iconClass: 'p-toastr-error p-toastr'
+        });
+      } else {
+        $scope.statusMsg = 'Free';
+        toastr.success('Is now free!', $scope.locationName, {
+          iconClass: 'p-toastr-success p-toastr'
+        });
+      }
+    }
 
     // get status from API
     this.getStatus = () => {

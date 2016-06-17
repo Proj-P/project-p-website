@@ -41,3 +41,39 @@ h6 {
   margin: 0;
   padding: 0;
 }
+
+
+.p-toastr {
+  font-family: $primary-font;
+  background: $dark-gray;
+  border-radius: none;
+  transition: ease-in-out .2s;
+  padding: 25px;
+  border-left: 4px solid $primary-color;
+
+  .toast-title {
+    font-weight: 500;
+    font-size: 1.1em;
+    color: lighten($blue, 30%);
+    padding: 5px 0;
+  }
+
+  .toast-message {
+    text-transform: uppercase;
+    font-size: .75em;
+    color: $gray;
+  }
+
+  &:hover {
+    box-shadow: none;
+  }
+
+  &-error {
+    border-left: 4px solid $red;
+  }
+
+  &-success {
+    border-left: 4px solid $green;
+  }
+
+}
