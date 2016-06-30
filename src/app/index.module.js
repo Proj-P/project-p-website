@@ -24,7 +24,7 @@ angular.module('projectpAngular', [
   // Constants, app wide values
   .value('envConfig', {
     apiUrl:   ' https://api.project-p.xyz',
-    webSocketUrl:   'wss://api.project-p.xyz',
+    webSocketUrl:   'https://api.project-p.xyz:443',
     baseUrl:  '/',
     debug:    true
   })
