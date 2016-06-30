@@ -30,13 +30,6 @@ export class MainController {
         if (data.data.occupied) {
           this.status = true;
           this.toggleStatusMessages();
-          ( () => {
-            var link = $document.createElement('link');
-            link.type = 'image/x-icon';
-            link.rel = 'shortcut icon';
-            link.href = 'http://www.stackoverflow.com/favicon.ico';
-            $document.getElementsByTagName('head')[0].appendChild(link);
-          });
 
         } else {
           this.status = false;
@@ -71,7 +64,7 @@ export class MainController {
     // get status from API
     this.getStatus = () => {
       let call_data = {
-        suffix: '/locations/2',
+        suffix: '/locations/2/',
         headers: {
           'content-type': 'application/json'
         }
@@ -109,7 +102,7 @@ export class MainController {
 
     this.getGraphData = () => {
       let call_data = {
-        suffix: '/visits',
+        suffix: '/visits/',
         headers: {
           'content-type': 'application/json'
         }
