@@ -1,5 +1,5 @@
 export class MainController {
-  constructor (toastr, DataService, $log, webSocketFactory, $scope) {
+  constructor (toastr, DataService, $log, webSocketFactory, $scope, $document, dateToDateFactory) {
     'ngInject';
 
     $scope.locationName = 'Tjuna Toilet';
@@ -30,6 +30,13 @@ export class MainController {
         if (data.data.occupied) {
           this.status = true;
           this.toggleStatusMessages();
+          ( () => {
+            var link = $document.createElement('link');
+            link.type = 'image/x-icon';
+            link.rel = 'shortcut icon';
+            link.href = 'http://www.stackoverflow.com/favicon.ico';
+            $document.getElementsByTagName('head')[0].appendChild(link);
+          });
 
         } else {
           this.status = false;
@@ -86,7 +93,7 @@ export class MainController {
 
 
     // graph
-    $scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    $scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
     $scope.series = ['Recent visits'];
     $scope.data = [
       [0, 0, 0, 0, 0, 0, 0]
@@ -124,6 +131,9 @@ export class MainController {
     };
 
     this.getGraphData();
+
+    let memes = dateToDateFactory();
+    $log.log(memes);
 
   }
 }

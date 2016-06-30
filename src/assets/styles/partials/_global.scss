@@ -77,3 +77,8 @@ h6 {
   }
 
 }
+
+.disabled {
+  color: $gray !important;
+  pointer-events: none;
+}
