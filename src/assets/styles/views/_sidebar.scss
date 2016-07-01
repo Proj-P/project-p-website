@@ -1,10 +1,8 @@
 
 .sidebar-wrapper {
-  min-height: 540px;
-  width: 30%;
+  min-width: 260px;
   background: $darker-gray;
   transition: all .5s ease;
-  float: left;
   padding: 20px 0;
 
   .select-location {
@@ -55,6 +53,7 @@
     a {
       color: $white;
       letter-spacing: 1px;
+      text-decoration: none;
       cursor: pointer;
       display: block;
       padding: 12px 30px;

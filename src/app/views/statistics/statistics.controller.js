@@ -1,5 +1,5 @@
-export class MainController {
-  constructor (toastr, DataService, $log, webSocketFactory, $scope) {
+export class StatisticsController {
+  constructor (DataService, $scope, $log) {
     'ngInject';
 
     $scope.locationName = 'Tjuna Toilet';
@@ -7,22 +7,10 @@ export class MainController {
     $scope.status = false; // false is free, true is occupied
     $scope.statusMsg = 'No data';
 
-    // listen to websockets
-    webSocketFactory.on('connect', () => {
-      $log.info('Connected to WebSocket');
-    });
+    let $this = this;
 
-    webSocketFactory.on('location', (data) => {
-      let type = 'websocket';
-      this.determineStatus(data, type);
-      let average = Math.round((data.data.average_duration / 60));
-      $scope.averageTime = average;
-      $scope.locationName = data.data.name;
-    });
-
-    webSocketFactory.on('visit', (data) => {
-      this.fillGraph(data.data);
-    });
+    this.startDate = '';
+    this.endDate = '';
 
     // check the toilet status
     this.determineStatus = (data, type) => {
@@ -34,13 +22,40 @@ export class MainController {
           this.status = false;
         }
       }
-      if (type == 'websocket') {
-        if (data.location.occupied) {
-          this.status = true;
-        } else {
-          $scope.status = false;
+    };
+
+    this.formattedDate = (date) => {
+      let month =  date.getMonth() < 10 ? '0' + (date.getMonth() + 1) : '' + (date.getMonth() + 1),
+          day = date.getDate() < 10 ? '0' + date.getDate() : '' + date.getDate(),
+          year = date.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
+    // get data with user inputted dates
+    this.getDataWithInput = () => {
+      let submitStartDate = this.formattedDate($this.startDate);
+      let submitEndDate = this.formattedDate($this.endDate);
+
+      let call_data = {
+        suffix: `/locations/2/visits/${submitStartDate}/${submitEndDate}`,
+        headers: {
+          'content-type': 'application/json'
         }
-      }
+      };
+
+      DataService.getData(call_data).then((data) => {
+        $scope.data = [
+          [0, 0, 0, 0, 0, 0, 0]
+        ];
+        this.fillGraph(data);
+
+      }).catch((response) => {
+        $log.log(response);
+      });
     };
 
     // get status from API
@@ -65,7 +80,6 @@ export class MainController {
 
     // trigger so we get data when the page loads, not just when it changes
     this.getStatus();
-
 
     // graph
     $scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
@@ -101,6 +115,5 @@ export class MainController {
     };
 
     this.getGraphData();
-
   }
 }

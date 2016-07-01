@@ -19,14 +19,12 @@ body {
 }
 
 .wrapper {
-  min-height: 510px;
-  background: $white;
-  width: 1024px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 2px 2px 7px $box-shadow;
 }
 
 h1,
@@ -42,6 +40,55 @@ h6 {
   padding: 0;
 }
 
+label {
+  display: inline;
+  color: $dark-gray;
+  position: absolute;
+  margin-left: 5px;
+  font-size: .8em;
+}
+
+input {
+  height: 36px;
+  border: 0;
+  background: $light-gray;
+  font-size: .8em;
+  color: $dark-gray;
+  border-bottom: 2px solid $light-gray;
+  margin: 20px 5px 0;
+  transition: ease-in-out .1s;
+}
+
+input:focus {
+  outline: none;
+  border-bottom: 2px solid $primary-color;
+  transition: ease-in-out .1s;
+}
+
+.btn {
+  background: $primary-color;
+  color: $white;
+  padding: 8px 30px;
+  height: 42px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: lighter;
+  letter-spacing: .15px;
+  font-size: .8em;
+  transition: ease-in-out .2s;
+  box-shadow: none;
+
+  &:hover {
+    box-shadow: 2px 3px 5px transparentize($black, .7);
+    transition: ease-in-out .3s;
+    background: darken($primary-color, 5%);
+  }
+}
+
+.chart {
+  display: inline-block;
+  transition: ease-in-out .2s;
+}
 
 .p-toastr {
   font-family: $primary-font;
@@ -78,7 +125,13 @@ h6 {
 
 }
 
-.disabled {
-  color: $gray !important;
-  pointer-events: none;
+@media (max-width: 768px) {
+
+  .content {
+    min-width: 0;
+  }
+
+  .hide-sm {
+    display: none;
+  }
 }

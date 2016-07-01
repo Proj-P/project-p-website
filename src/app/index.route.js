@@ -8,11 +8,11 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
       controllerAs: 'main'
     })
 
-    .state('date', {
-      url: '/date',
-      templateUrl: 'app/main/date.html',
-      controller: 'MainController',
-      controllerAs: 'main'
+    .state('stats', {
+      url: '/stats',
+      templateUrl: 'app/views/statistics/statistics.view.html',
+      controller: 'StatisticsController',
+      controllerAs: 'stats'
     });
 
   $urlRouterProvider.otherwise('/');

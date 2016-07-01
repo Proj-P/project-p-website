@@ -1,9 +1,17 @@
+.content {
+  min-height: 530px;
+  background: $white;
+  min-width: 940px;
+  box-shadow: 2px 2px 7px $box-shadow;
+  display: flex;
+  align-items: stretch;
+  align-content: stretch;
+}
 
 .page-content-wrapper {
-  float: left;
-  width: 70%;
   min-height: 510px;
   background: $white;
+  flex-grow: 2;
 
   .page-content-inner-wrapper {
     padding: 30px;
@@ -46,4 +54,8 @@
       }
     }
   }
+}
+
+.statistics {
+  display: block;
 }

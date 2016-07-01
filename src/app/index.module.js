@@ -2,12 +2,15 @@
 import { config }           from './index.config';
 import { routerConfig }     from './index.route';
 import { runBlock }         from './index.run';
-import { MainController }   from './main/main.controller';
 
-import { webSocketFactory }    from '../app/factories/open-web-socket.factory';
-import { dateToDateFactory } from '../app/factories/date-to-date.factory'
+import { MainController }     from './main/main.controller';
 
-import { DataService }      from  '../app/services/data.service';
+import { StatisticsController }  from './views/statistics/statistics.controller';
+
+import { webSocketFactory }   from '../app/factories/open-web-socket.factory';
+import { dateToDateFactory }  from '../app/factories/date-to-date.factory'
+
+import { DataService }        from  '../app/services/data.service';
 
 angular.module('projectpAngular', [
   'ngAnimate',
@@ -35,8 +38,9 @@ angular.module('projectpAngular', [
   .run(runBlock)
 
   .factory('webSocketFactory',            webSocketFactory)
-  .factory('dateToDateFactory',            dateToDateFactory)
+  .factory('dateToDateFactory',           dateToDateFactory)
 
+  .controller('StatisticsController',     StatisticsController)
   .controller('MainController',           MainController)
 
   .service('DataService',                 DataService);

@@ -2,7 +2,7 @@
 <div class="wrapper">
 
   <div class="content">
-    <div class="sidebar-wrapper hide-sm" ng-view="pSidebarComponent">
+    <div class="sidebar-wrapper hide-sm">
       <div class="sidebar-brand">
         <span class="logo">
           Project P
@@ -13,8 +13,8 @@
       </div>
       <ul class="sidebar-nav">
         <li>
-          <a class="active" ui-sref="/">Dashboard</a>
-          <a ui-sref="stats">Statistics</a>
+          <a ui-sref="home">Dashboard</a>
+          <a class="active" ui-sref="stats">Statistics</a>
         </li>
       </ul>
     </div>
@@ -24,20 +24,12 @@
         <div class="row">
           <div class="col-lg-12">
 
-            <div class="stat-block-container">
+            <label for="startDate">Start date</label>
+            <input type="date" name="startDate" ng-model="stats.startDate">
+            <label for="endDate">End date</label>
+            <input type="date" name="endDate" ng-model="stats.endDate">
 
-                <div class="stat-block">
-                  <i ng-hide="status" class="material-icons big">done</i>
-                  <i ng-show="status" class="material-icons big">close</i>
-                  <span>Current status</span>
-                </div>
-
-                <div class="stat-block">
-                  <h4 class="big">{{averageTime}} min.</h4>
-                  <span>Average time</span>
-                </div>
-
-              </div>
+            <a href class="btn" ng-click="stats.getDataWithInput()">Fill graph</a>
 
               <div class="graph">
                 <canvas id="line" class="chart chart-line" chart-data="data"
