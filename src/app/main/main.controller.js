@@ -1,5 +1,5 @@
 export class MainController {
-  constructor (toastr, DataService, $log, webSocketFactory, $scope) {
+  constructor (toastr, DataService, $log, webSocketFactory, $scope, $rootScope) {
     'ngInject';
 
     $scope.locationName = 'Tjuna Toilet';
@@ -13,8 +13,8 @@ export class MainController {
     });
 
     webSocketFactory.on('location', (data) => {
-      let type = 'websocket';
-      this.determineStatus(data, type);
+      $log.log(data);
+      this.determineStatus(data);
       let average = Math.round((data.data.average_duration / 60));
       $scope.averageTime = average;
       $scope.locationName = data.data.name;
@@ -25,21 +25,13 @@ export class MainController {
     });
 
     // check the toilet status
-    this.determineStatus = (data, type) => {
-      if (type == 'api') {
-        if (data.data.occupied) {
-          this.status = true;
+    this.determineStatus = (data) => {
+      if (data.data.occupied) {
+        $scope.status = true;
 
-        } else {
-          this.status = false;
-        }
-      }
-      if (type == 'websocket') {
-        if (data.location.occupied) {
-          this.status = true;
-        } else {
-          $scope.status = false;
-        }
+      } else {
+        $scope.status = false;
+        $rootScope.occupied = false;
       }
     };
 
@@ -53,8 +45,7 @@ export class MainController {
       };
 
       DataService.getData(call_data).then((data) => {
-        let type = 'api';
-        this.determineStatus(data, type);
+        this.determineStatus(data);
         let average = Math.round((data.data.average_duration / 60));
         $scope.averageTime = average;
 
