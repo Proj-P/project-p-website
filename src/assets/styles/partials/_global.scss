@@ -2,6 +2,9 @@ body {
   font-family: $primary-font;
   -webkit-font-smoothing: subpixel-antialiased;
   background: url('/assets/images/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .bg {
@@ -85,9 +88,21 @@ input:focus {
   }
 }
 
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+}
+
 .chart {
-  display: inline-block;
   transition: ease-in-out .2s;
+  width: 100%;
+  min-width: 600px;
+  max-width: 700px;
+  max-height: 400px;
+  height: 300px;
+  padding: 10px 0;
 }
 
 .p-toastr {
@@ -125,7 +140,16 @@ input:focus {
 
 }
 
+.hide-lg {
+  display: none;
+}
+
 @media (max-width: 768px) {
+
+  .wrapper {
+    align-items: baseline;
+    position: relative;
+  }
 
   .content {
     min-width: 0;
@@ -133,5 +157,15 @@ input:focus {
 
   .hide-sm {
     display: none;
+  }
+
+  .hide-lg {
+    display: block;
+  }
+
+  .chart {
+    width: 100%;
+    max-width: 100%;
+    min-width: 30px;
   }
 }

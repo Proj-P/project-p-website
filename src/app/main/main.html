@@ -20,6 +20,11 @@
     </div>
 
     <div class="page-content-wrapper">
+      <div class="mobile-header hide-lg">
+        <span class="logo">
+          Project P
+        </span>
+      </div>
       <div class="page-content-inner-wrapper nudge-up">
         <div class="row">
           <div class="col-lg-12">
@@ -27,9 +32,9 @@
             <div class="stat-block-container">
 
                 <div class="stat-block">
-                  <i ng-hide="status" class="material-icons big">done</i>
-                  <i ng-show="status" class="material-icons big">close</i>
-                  <span>Current status</span>
+                  <i ng-hide="status" class="material-icons big">lock_open</i>
+                  <i ng-show="status" class="material-icons big">lock_outline</i>
+                  <span>Current status: free</span>
                 </div>
 
                 <div class="stat-block">
@@ -40,7 +45,7 @@
               </div>
 
               <div class="graph">
-                <canvas id="line" class="chart chart-line" chart-data="data"
+                <canvas class="chart chart-line" chart-data="data"
                   chart-labels="labels" chart-legend="false" chart-series="series">
                 </canvas>
               </div>
