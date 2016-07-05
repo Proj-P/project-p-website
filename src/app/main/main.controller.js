@@ -1,5 +1,5 @@
 export class MainController {
-  constructor (toastr, DataService, $log, webSocketFactory, $scope, $rootScope) {
+  constructor (toastr, DataService, $log, webSocketFactory, $scope, $rootScope, $filter) {
     'ngInject';
 
     $scope.locationName = 'Tjuna Toilet';
@@ -66,10 +66,28 @@ export class MainController {
     ];
 
     this.fillGraph = (data) => {
+
+      let today = new Date();
+      // get the weeknumber of today
+      let todayWeek = $filter('date')(today, 'ww');
+
       angular.forEach(data.data, (val) => {
+
+        // make a date of the start time of the visit
         let date = new Date(val.start_time);
-        let dayNr = date.getDay() -1;
-        $scope.data[0][dayNr] = $scope.data[0][dayNr] += 1;
+        let dayNr = date.getDay() -1; // -1 so it places it in the correct spot
+
+        // get the weeknumber of the start_time
+        let dateWeek = $filter('date')(date, 'ww');
+
+        // if the date is in the same week as today add it to the array
+        if (dateWeek === todayWeek) {
+          $scope.data[0][dayNr] = $scope.data[0][dayNr] += 1; // append
+        } else {
+          // TODO: add handling for other weeks
+          // $scope.data[dateWeek][dayNr] = $scope.data[dateWeek][dayNr] += 1; // append
+        }
+
       });
     };
 
