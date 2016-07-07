@@ -1,6 +1,8 @@
 {
   "name": "Project P",
-  "short_name": "PROJP",
+  "short_name": "Project P",
+  "description": "The way to the future",
+  "display": "standalone",
   "icons": [
     {
       "src": "favicon/apple-icon-114x114.png",
