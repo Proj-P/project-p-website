@@ -7,7 +7,7 @@ export function config ($locationProvider, toastrConfig, $httpProvider, ChartJsP
     ChartJsProvider.setOptions({
       colours : [ '#ff7878', '#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'],
       responsive: true,
-      maintainAspectRatio: true,
+      maintainAspectRatio: true
     });
 
   angular.extend(toastrConfig, {

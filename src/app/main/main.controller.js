@@ -58,7 +58,7 @@ export class MainController {
 
     // graph
     $scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-    $scope.series = ['Recent visits'];
+    $scope.series = ['Recent visits'], ['Recent visits'], ['Recent visits'];
     $scope.data = [
       [0, 0, 0, 0, 0, 0, 0]
     ];
@@ -68,6 +68,8 @@ export class MainController {
       let today = new Date();
       // get the weeknumber of today
       let todayWeek = $filter('date')(today, 'ww');
+      var ourWeeks = [];
+      ourWeeks += $scope.data[0];
 
       angular.forEach(data.data, (val) => {
 
@@ -82,10 +84,17 @@ export class MainController {
         if (dateWeek === todayWeek) {
           $scope.data[0][dayNr] = $scope.data[0][dayNr] += 1; // append
         } else {
-          // TODO: add handling for other weeks
-          // $scope.data[dateWeek][dayNr] = $scope.data[dateWeek][dayNr] += 1; // append
+          if (ourWeeks[dateWeek]) {
+            $scope.data[dateWeek] = [0, 0, 0, 0, 0, 0, 0]
+            $scope.data[dateWeek][dayNr] = $scope.data[dateWeek][dayNr] += 1;
+            $log.log($scope.data)
+            // fix this so it works
+          } else {
+            dateWeek = [0, 0, 0, 0, 0, 0, 0];
+            ourWeeks = ourWeeks[dateWeek];
+            // copy fix down here
+          }
         }
-
       });
     };
 
