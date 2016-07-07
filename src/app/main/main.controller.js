@@ -58,18 +58,34 @@ export class MainController {
 
     // graph
     $scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-    $scope.series = ['Recent visits'], ['Recent visits'], ['Recent visits'];
+    $scope.series = ['This week', 'Last week', '3 weeks ago', '4 weeks ago'];
     $scope.data = [
       [0, 0, 0, 0, 0, 0, 0]
     ];
+    $scope.options = {
+    scales: {
+      yAxes: [
+        {
+          id: 'y-axis-1',
+          type: 'linear',
+          display: true,
+          position: 'left'
+        },
+        {
+          id: 'y-axis-2',
+          type: 'linear',
+          display: true,
+          position: 'right'
+        }
+      ]
+    }
+  };
 
     this.fillGraph = (data) => {
 
       let today = new Date();
       // get the weeknumber of today
       let todayWeek = $filter('date')(today, 'ww');
-      var ourWeeks = [];
-      ourWeeks += $scope.data[0];
 
       angular.forEach(data.data, (val) => {
 
@@ -84,16 +100,23 @@ export class MainController {
         if (dateWeek === todayWeek) {
           $scope.data[0][dayNr] = $scope.data[0][dayNr] += 1; // append
         } else {
-          if (ourWeeks[dateWeek]) {
-            $scope.data[dateWeek] = [0, 0, 0, 0, 0, 0, 0]
-            $scope.data[dateWeek][dayNr] = $scope.data[dateWeek][dayNr] += 1;
-            $log.log($scope.data)
-            // fix this so it works
+          // determine the place in the array
+          let arrayPlace = todayWeek - dateWeek;
+          // check if array exists
+          if ($scope.data[arrayPlace]) {
+            $scope.data[arrayPlace][dayNr] = $scope.data[arrayPlace][dayNr] += 1;
           } else {
-            dateWeek = [0, 0, 0, 0, 0, 0, 0];
-            ourWeeks = ourWeeks[dateWeek];
-            // copy fix down here
+            $log.log($scope.data);
+            $scope.data.push([0, 0, 0, 0, 0, 0, 0]);
+            $log.log($scope.data);
+            $scope.data[arrayPlace][dayNr] = $scope.data[arrayPlace][dayNr] += 1;
+            $log('ss');
           }
+
+          // $scope.data[arrayPlace] = [0, 0, 0, 0, 0, 0, 0];
+
+          // $log.log($scope.data);
+          // // fix this so it works
         }
       });
     };
