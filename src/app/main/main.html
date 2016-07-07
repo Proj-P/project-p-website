@@ -45,8 +45,12 @@
               </div>
 
               <div class="graph">
+                <!-- <button ng-click="test()">test</button>
+                <select multiple ng-model="pickedWeeks">
+                  <option value="0" ng-repeat="(key, line) in data">{{series[key]}}</option>
+                </select> -->
                 <canvas class="chart chart-line" chart-data="data"
-                  chart-labels="labels" chart-legend="false" chart-series="series" chart-dataset-override="datasetOverride">
+                  chart-labels="labels" chart-legend="false" chart-options="options" chart-series="series" chart-dataset-override="datasetOverride">
                 </canvas>
               </div>
 

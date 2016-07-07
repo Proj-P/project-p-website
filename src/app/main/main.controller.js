@@ -55,37 +55,29 @@ export class MainController {
     // trigger so we get data when the page loads, not just when it changes
     this.getStatus();
 
+    $scope.test = () => {
+      $scope.data = $scope.data.map(function (data) {
+        return data.map(function (y) {
+          y = 0;
+          return y;
+        });
+      });
+    };
+
 
     // graph
     $scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-    $scope.series = ['This week', 'Last week', '3 weeks ago', '4 weeks ago'];
+    $scope.series = ['This week', 'Last week', '3 weeks ago', '4 weeks ago', '5 weeks ago', '6 weeks ago', '7 weeks ago', '8 weeks ago','9 weeks ago', '10 weeks ago'];
     $scope.data = [
       [0, 0, 0, 0, 0, 0, 0]
     ];
-    $scope.options = {
-    scales: {
-      yAxes: [
-        {
-          id: 'y-axis-1',
-          type: 'linear',
-          display: true,
-          position: 'left'
-        },
-        {
-          id: 'y-axis-2',
-          type: 'linear',
-          display: true,
-          position: 'right'
-        }
-      ]
-    }
-  };
 
     this.fillGraph = (data) => {
 
       let today = new Date();
       // get the weeknumber of today
       let todayWeek = $filter('date')(today, 'ww');
+
 
       angular.forEach(data.data, (val) => {
 
@@ -96,27 +88,24 @@ export class MainController {
         // get the weeknumber of the start_time
         let dateWeek = $filter('date')(date, 'ww');
 
+        // determine the place in the array
+        let arrayPlace = todayWeek - dateWeek;
+
         // if the date is in the same week as today add it to the array
         if (dateWeek === todayWeek) {
           $scope.data[0][dayNr] = $scope.data[0][dayNr] += 1; // append
-        } else {
-          // determine the place in the array
-          let arrayPlace = todayWeek - dateWeek;
-          // check if array exists
+
+          // check if array exists and doesn't go further then x
+        } else if (arrayPlace <= 0) {
+
           if ($scope.data[arrayPlace]) {
             $scope.data[arrayPlace][dayNr] = $scope.data[arrayPlace][dayNr] += 1;
+
           } else {
-            $log.log($scope.data);
+            // push a new week array into the
             $scope.data.push([0, 0, 0, 0, 0, 0, 0]);
-            $log.log($scope.data);
-            $scope.data[arrayPlace][dayNr] = $scope.data[arrayPlace][dayNr] += 1;
-            $log('ss');
+            $scope.data[arrayPlace - 1][dayNr] = $scope.data[arrayPlace - 1][dayNr] += 1;
           }
-
-          // $scope.data[arrayPlace] = [0, 0, 0, 0, 0, 0, 0];
-
-          // $log.log($scope.data);
-          // // fix this so it works
         }
       });
     };
