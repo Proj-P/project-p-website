@@ -15,7 +15,10 @@ export class MainController {
     webSocketFactory.on('location', (data) => {
       $log.log(data);
       this.determineStatus(data);
-      $scope.averageTime = (data.data.average_duration / 60).toFixed(1);
+      let averageMin = Math.floor(data.data.average_duration / 60);
+      let averageSec = Math.floor(data.data.average_duration % 60);
+
+      $scope.averageTime = `${averageMin}m ${averageSec}s`
       $scope.locationName = data.data.name;
     });
 
@@ -45,7 +48,10 @@ export class MainController {
 
       DataService.getData(call_data).then((data) => {
         this.determineStatus(data);
-        $scope.averageTime = (data.data.average_duration / 60).toFixed(1);
+        let averageMin = Math.floor(data.data.average_duration / 60);
+        let averageSec = Math.floor(data.data.average_duration % 60);
+
+        $scope.averageTime = `${averageMin}m ${averageSec}s`
 
       }).catch((response) => {
         $log.log(response);

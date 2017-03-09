@@ -26,6 +26,10 @@
     justify-content: center;
     min-height: 80px;
 
+    .lowercase {
+      text-transform: none;
+    }
+
     .stat-block {
       min-height: 100px;
       text-align: center;
