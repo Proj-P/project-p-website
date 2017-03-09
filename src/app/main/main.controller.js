@@ -89,7 +89,7 @@ export class MainController {
         let dateWeek = $filter('date')(date, 'ww');
 
         // determine the place in the array
-        let arrayPlace = todayWeek - dateWeek;
+        let arrayPlace = dateWeek - todayWeek;
 
         // if the date is in the same week as today add it to the array
         if (dateWeek === todayWeek) {
