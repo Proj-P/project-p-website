@@ -106,11 +106,6 @@ export class MainController {
 
           if ($scope.data[arrayPlace]) {
             $scope.data[arrayPlace][dayNr] = $scope.data[arrayPlace][dayNr] += 1;
-
-          } else {
-            // push a new week array into the
-            $scope.data.push([0, 0, 0, 0, 0, 0, 0]);
-            $scope.data[arrayPlace - 1][dayNr] = $scope.data[arrayPlace - 1][dayNr] += 1;
           }
         }
       });
