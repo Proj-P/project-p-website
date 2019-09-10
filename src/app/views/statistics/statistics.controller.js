@@ -15,7 +15,7 @@ export class StatisticsController {
     // check the toilet status
     this.determineStatus = (data, type) => {
       if (type == 'api') {
-        if (data.data.occupied) {
+        if (data.occupied) {
           this.status = true;
 
         } else {
@@ -41,7 +41,7 @@ export class StatisticsController {
       let submitEndDate = this.formattedDate($this.endDate);
 
       let call_data = {
-        suffix: `/locations/2/visits/${submitStartDate}/${submitEndDate}`,
+        suffix: `/locations/1/visits/${submitStartDate}/${submitEndDate}`,
         headers: {
           'content-type': 'application/json'
         }
@@ -61,7 +61,7 @@ export class StatisticsController {
     // get status from API
     this.getStatus = () => {
       let call_data = {
-        suffix: '/locations/2/',
+        suffix: '/locations/1/',
         headers: {
           'content-type': 'application/json'
         }
@@ -70,7 +70,7 @@ export class StatisticsController {
       DataService.getData(call_data).then((data) => {
         let type = 'api';
         this.determineStatus(data, type);
-        let average = Math.round((data.data.average_duration / 60));
+        let average = Math.round((data.average_duration / 60));
         $scope.averageTime = average;
 
       }).catch((response) => {
@@ -89,7 +89,7 @@ export class StatisticsController {
     ];
 
     this.fillGraph = (data) => {
-      angular.forEach(data.data, (val) => {
+      angular.forEach(data, (val) => {
         let date = new Date(val.start_time);
         let dayNr = date.getDay() -1;
         $scope.data[0][dayNr] = $scope.data[0][dayNr] += 1;

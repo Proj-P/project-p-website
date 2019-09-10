@@ -5,7 +5,7 @@ export function dateToDateFactory($log, DataService) {
 
   return this.getStatus = () => {
     let call_data = {
-      suffix: `/locations/2/visits/${startDate}/${endDate}/`,
+      suffix: `/locations/1/visits/${startDate}/${endDate}/`,
       headers: {
         'content-type': 'application/json'
       }
@@ -19,7 +19,7 @@ export function dateToDateFactory($log, DataService) {
         [0, 0, 0, 0, 0, 0, 0]
       ];
 
-      angular.forEach(data.data, (val) => {
+      angular.forEach(data, (val) => {
         let date = new Date(val.start_time);
         let dayNr = date.getDay() -1;
 

@@ -13,22 +13,24 @@ export class MainController {
     });
 
     webSocketFactory.on('location', (data) => {
+      // eslint-disable-next-line angular/json-functions
+      data = JSON.parse(data);
       $log.log(data);
       this.determineStatus(data);
-      let averageMin = Math.floor(data.data.average_duration / 60);
-      let averageSec = Math.floor(data.data.average_duration % 60);
+      let averageMin = Math.floor(data.average_duration / 60);
+      let averageSec = Math.floor(data.average_duration % 60);
 
       $scope.averageTime = `${averageMin}m ${averageSec}s`
-      $scope.locationName = data.data.name;
+      $scope.locationName = data.name;
     });
 
     webSocketFactory.on('visit', (data) => {
-      this.fillGraph(data.data);
+      this.fillGraph(data);
     });
 
     // check the toilet status
     this.determineStatus = (data) => {
-      if (data.data.occupied) {
+      if (data.occupied) {
         $scope.status = true;
 
       } else {
@@ -40,18 +42,18 @@ export class MainController {
     // get status from API
     this.getStatus = () => {
       let call_data = {
-        suffix: '/locations/2/',
+        suffix: '/locations/1/',
         headers: {
           'content-type': 'application/json'
         }
       };
 
-      DataService.getData(call_data).then((data) => {
-        this.determineStatus(data);
-        let averageMin = Math.floor(data.data.average_duration / 60);
-        let averageSec = Math.floor(data.data.average_duration % 60);
+      DataService.getData(call_data).then((response) => {
+        this.determineStatus(response.data);
+        let averageMin = Math.floor(response.data.average_duration / 60);
+        let averageSec = Math.floor(response.data.average_duration % 60);
 
-        $scope.averageTime = `${averageMin}m ${averageSec}s`
+        $scope.averageTime = `${averageMin}m ${averageSec}s`;
 
       }).catch((response) => {
         $log.log(response);
@@ -85,7 +87,7 @@ export class MainController {
       let todayWeek = $filter('date')(today, 'ww');
 
 
-      angular.forEach(data.data, (val) => {
+      angular.forEach(data, (val) => {
 
         // make a date of the start time of the visit
         let date = new Date(val.start_time);

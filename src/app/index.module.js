@@ -26,8 +26,8 @@ angular.module('projectpAngular', [
   'btford.socket-io'])
   // Constants, app wide values
   .value('envConfig', {
-    apiUrl:   ' https://api.project-p.xyz',
-    webSocketUrl:   'https://api.project-p.xyz:443',
+    apiUrl:   ' https://project-p.vps101.tjuna.com',
+    webSocketUrl:   'https://project-p.vps101.tjuna.com:443',
     baseUrl:  '/',
     debug:    true
   })
